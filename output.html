@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function showUser(str) {
+  if (str=="") {
+    document.getElementById("txtHint").innerHTML="";
+    return;
+  } 
+  if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+  } else { // code for IE6, IE5
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+      document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+    }
+  }
+  xmlhttp.open("GET","getuser.php?q="+str,true);
+  xmlhttp.send();
+}
+</script>
+</head>
+<body>
+<!--Form where a user can click a drop down menu to view information of that patient-->
+<form>
+<select name="patients" onchange="showUser(this.value)">
+<option value="">Select a person:</option>
+<option value="101">Billy Cobbs</option>
+<option value="102">Eileen Wilson</option>
+<option value="103">Bente Wilson</option>
+<option value="104">Peng Hung</option>
+<option value="105">Paz Magana</option>
+<option value="106">Urbano Rossi</option>
+<option value="107">Maria Udinesi</option>
+<option value="108">Siljie Samuelsson</option>
+<option value="109">Ernie Neil</option>
+<option value="110">Madoka Mayahona</option>
+<option value="111">Billy Grenier</option>
+<option value="112">Rosa Uiza</option>
+<option value="113">Raj Basu</option>
+<option value="114">Angel Rodrigo</option>
+<option value="115">Steven Sanchez</option>  
+</select>
+</form>
+<br>
+<div id="txtHint"><b>Person info will be listed here.</b></div>
+
+</body>
+</html>

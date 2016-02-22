@@ -1,0 +1,81 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ajax Add Record Form</title>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#submit').click(function() {
+                var PatientID = $('#PatientID').val();
+                var FirstName = $('#FirstName').val();
+                var LastName = $('#LastName').val();
+                var Address = $('#Address').val();
+                var City = $('#City').val();
+                var State = $('#State').val();
+                var Zipcode = $('#ZipCode').val();
+                $.ajax({
+                    type: "POST",
+                    cache: false,        
+                    url: 'ajax.php',
+                    data: {PatientID: PatientID, FirstName: FirstName, LastName: LastName, Address: Address, City: City,
+                           State: State, ZipCode: Zipcode},
+                    success: function(data) {
+                        alert('data has been stored to database');
+                    }
+                });
+            });
+        });
+    </script>
+       <style>
+    input[type=text] {
+    width: 50%;
+    border: 2px solid red;
+    padding: 5px 10px;
+    margin: 3px 0;
+    box-sizing: border-box;
+}
+    input[type=submit]{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+    </style>
+</head>
+
+<body>
+<form action="ajax.php" method="post">
+    <p>
+        <label for="PatientID">Patient ID</label><br>
+        <input type="text" name="PatientID" id="PatientID">
+    </p>
+    <p>
+        <label for="FirstName">First Name</label><br>
+        <input type="text" name="FirstName" id="FirstName">
+    </p>
+    <p>
+        <label for="LastName">Last Name</label><br>
+        <input type="text" name="LastName" id="LastName">
+    </p>
+    <p>
+        <label for="Address">Address</label><br>
+        <input type="text" name="Address" id="Address">
+    </p>
+    <p>
+        <label for="City">City</label><br>
+        <input type="text" name="City" id="City">
+    </p>
+    <p>
+        <label for="State">State</label><br>
+        <input type="text" name="State" id="State">
+    </p>
+    <p>
+        <label for="ZipCode">Zip Code:</label><br>
+        <input type="text" name="ZipCode" id="ZipCode">
+    </p>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
